@@ -15,7 +15,10 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return response('it works');
+    return response()->json([
+        'name' => env('APP_NAME', 'Stadiaffinity'),
+        'vers.' => env('APP_VERSION'),
+    ]);
 });
 
 Route::get('/test', function () {
