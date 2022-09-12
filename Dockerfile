@@ -1,3 +1,4 @@
+# syntax = docker/dockerfile:1.2
 FROM richarvey/nginx-php-fpm:2.0.4
 
 COPY . .
@@ -16,5 +17,8 @@ ENV LOG_CHANNEL stderr
 
 # Allow composer to run as root
 ENV COMPOSER_ALLOW_SUPERUSER 1
+
+# ENV
+RUN --mount=type=secret,id=_env,dst=/etc/secrets/.env cat /etc/secrets/.env
 
 CMD ["/start.sh"]
